@@ -1,0 +1,13 @@
+# C++ build
+build/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+# VS Code
+.vscode/
+# Python/Jupyter (si los usas)
+__pycache__/
+.ipynb_checkpoints/
