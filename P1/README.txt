@@ -1,6 +1,8 @@
 This repository documents the workflow and codes for Project 1.
 The files are described in order of use, following the progression of the project.
 
+IMPORTANT: data2.txt and data4.txt are zip files as GitHub doesn't admit heavy files. You need to unzip these files.
+
 - Step 1: Generating the exact solution
 
 * problem2.cpp
