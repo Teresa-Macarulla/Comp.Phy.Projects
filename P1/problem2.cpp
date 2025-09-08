@@ -5,7 +5,7 @@
 #include <cstdlib> 
 
 double u(double x) {
-    return 1.0 - (1.0 - std::exp(-10.0)) * x - std::exp(-10.0 * x);  // Definition of the u(x) function.
+    return 1.0-(1.0-std::exp(-10.0))*x-std::exp(-10.0*x);  // Definition of the u(x) function.
 }
 
 int main() {
@@ -17,8 +17,8 @@ int main() {
     std::ofstream data;
     data.open(filename);
 
-    int width = 12;  // Width parameters to format the output "data.txt" file
-    int prec  = 4;  // Precision of the values in "data.txt" fila
+    int width = 30;  // Width parameters to format the output "data.txt" file
+    int prec  = 14;  // Precision of the values in "data.txt" fila
 
     for (int i = 0; i < N; i++) {  // Create x and y data values
         double x = a+i*dx;

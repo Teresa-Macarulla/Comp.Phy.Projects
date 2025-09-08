@@ -11,6 +11,7 @@ double f(double x) {
 
 double v_start=0.0;  // Boundary condition u(0)=0
 double v_end=0.0;  // Boundary condition u(1)=0
+int m=6; // Cases from n=10 to n=10^7
 
 int main() {
     int n=1; // Initialize number of steps for discretization. This value will change for each case n=10, n=100, n=1000 ...
@@ -18,13 +19,13 @@ int main() {
     std::string filename = "data2.txt";  // Data file containig the values to be ploted
     std::ofstream out;  
     out.open(filename);
-    out << std::scientific << std::setprecision(4);  // Formating parameters for the putùt data
+    out << std::scientific << std::setprecision(14);  // Formating parameters for the putùt data
 
     // Create vectors containing vectors to store x and v for different n steps values
-    std::vector<std::vector<double>> X(4);
-    std::vector<std::vector<double>> V(4);
+    std::vector<std::vector<double>> X(m);
+    std::vector<std::vector<double>> V(m);
 
-    for (int j=0; j<=3; j++) {  // Each 'for' loop corresponds to a certain n value
+    for (int j=0; j<=m-1; j++) {  // Each 'for' loop corresponds to a certain n value
         
         n = n*10;  // Number of discretization points 
         double h=1.0/(n-1.0); // Discretization interval
@@ -83,15 +84,15 @@ int main() {
     }
 
     // Now we write all the data in 'data2.txt' file
-    for (size_t i = 0; i < 10000 ; i++) {
-        for (int k = 0; k < 4; k++) {
+    for (size_t i = 0; i < std::pow(10, m) ; i++) {
+        for (int k = 0; k < m; k++) {
             if (i < X[k].size()) {
-                out << std::setw(15) << X[k][i]
-                    << std::setw(15) << V[k][i];
+                out << std::setw(30) << X[k][i]
+                    << std::setw(30) << V[k][i];
             } else {
                 // Write empty colummns if there is no data
-                out << std::setw(15) << 0.0
-                    << std::setw(15) << 0.0;
+                out << std::setw(30) << 0.0
+                    << std::setw(30) << 0.0;
             }
         }
         out << "\n";
