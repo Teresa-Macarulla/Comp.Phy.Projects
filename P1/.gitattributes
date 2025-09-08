@@ -1,3 +1,5 @@
 *.bin filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+P1/data2.txt filter=lfs diff=lfs merge=lfs -text
+P1/data4.txt filter=lfs diff=lfs merge=lfs -text
