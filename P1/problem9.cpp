@@ -17,12 +17,12 @@ int m=6; // Cases from n=10 to n=10^7
 int main() {
     int n=1; // Initialize number of steps for discretization. This value will change for each case n=10, n=100, n=1000 ...
 
-    std::string filename = "data2.txt";  // Data file containig the values to be ploted
+    std::string filename = "data4.txt";  // Data file containig the values to be ploted
     std::ofstream out;  
     out.open(filename);
     out << std::scientific << std::setprecision(14);  // Formating parameters for the putùt data
 
-    std::ofstream tim("timing_general.txt");  // Store the timing information in "timing_general.txt"
+    std::ofstream tim("timing_special.txt");  // Store the timing information in "timing_special.txt"
     tim << std::scientific << std::setprecision(14);
 
     // Create vectors containing vectors to store x and v for different n steps values
@@ -37,11 +37,6 @@ int main() {
         n = n*10;  // Number of discretization points 
         double h=1.0/(n-1.0); // Discretization interval
 
-        std::vector<double> a(n-2, -1); // subdiagonal of matrix A
-        a[0]=0;
-        std::vector<double> b(n-2, 2);      // diagonal of matrix A
-        std::vector<double> c(n-2, -1); // superdiagonal of matrix A
-        c[n-3]=0;
         std::vector<double> g(n-2);  // Right-hand side of Av=g
         
         // x and v vectors have 2 more elements because of the boundary points
@@ -63,26 +58,25 @@ int main() {
         }
 
         // FORWARD SUBSTITUTION 
-        auto t1 = std::chrono::high_resolution_clock::now(); // Start measuring time for GENERAL ALGORITHM
+        auto t1 = std::chrono::high_resolution_clock::now(); // Start measuring time for SPECIAL ALGORITHM
 
-        b2[0]=b[0];
+        b2[0]=2.0;
         g2[0]=g[0];
 
         for (int i=1; i<n-2; i++) {
-            double m=a[i]/b2[i-1];
-            b2[i]=b[i]-m*c[i-1];
-            g2[i]=g[i]-m*g2[i-1];
+            b2[i]=2.0-1.0/b2[i-1];
+            g2[i]=g[i]+g2[i-1]/b2[i-1];
         }
 
         // BACK SUBSTITUTION 
         v[n-2]=g2[n-3]/b2[n-3];
 
         for (int i=n-3; i>0; i--) {
-            v[i]=(g2[i-1]-c[i-1]*v[i+1])/b2[i-1];
+            v[i]=(g2[i-1]+v[i+1])/b2[i-1];
         }
 
-        auto t2 = std::chrono::high_resolution_clock::now();  // End measuring time for GENERAL ALGORITHM
-        time[j]=std::chrono::duration<double>(t2 - t1).count();
+        auto t2 = std::chrono::high_resolution_clock::now();  // End measuring time for SPECIAL ALGORITHM
+        time[j]= std::chrono::duration<double>(t2 - t1).count();
 
         // Write time information
         tim << std::setw(30) << std::pow(10, j+1) << std::setw(30) << time[j];
