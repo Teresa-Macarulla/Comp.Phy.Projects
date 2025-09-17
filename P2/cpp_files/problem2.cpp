@@ -17,9 +17,9 @@ int main() {
     A.diag( 1).fill(a);
     A.diag(-1).fill(a);
 
-    // Numerical eigenpairs (symmetric => ascending λ)
-    vec  eval_num;
-    mat  evec_num;
+    // Solve eigenvalue problem with Armadillo 
+    vec  eval_num; // the eigenvalues will be stored here
+    mat  evec_num; // the eigenvectors will be stored here
     arma::eig_sym(eval_num, evec_num, A);
 
     // Analytical eigenvalues and eigenvectors
