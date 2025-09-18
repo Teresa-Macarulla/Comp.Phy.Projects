@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+#include <filesystem>
 
 int main() {
     using arma::mat; using arma::vec; using arma::normalise;
@@ -32,20 +34,44 @@ int main() {
             evec_ana(k-1,j-1)=std::sin(j*k*arma::datum::pi/(N+1.0));
         // unit norm
         evec_ana.col(j-1)=normalise(evec_ana.col(j-1));
-        // eigenvectors are unique up to sign; align with numeric
-        double s=arma::dot(evec_ana.col(j-1),evec_num.col(j-1))>=0.0?1.0:-1.0;
-        evec_ana.col(j-1)*=s;
     }
 
-    // Report max absolute differences
-    double max_ev_diff = arma::abs(eval_num - eval_ana).max();
-    double max_vec_diff = (evec_num - evec_ana).abs().max();
+    // Write the eigenvalues and eigenvectors
 
-    std::cout << std::setprecision(10) << std::scientific;
-    std::cout << "Analytical eigenvalues (N=6):\n";
-    eval_ana.t().raw_print(std::cout);
+    std::ofstream out("../txt_files/eval_evec.txt");
+    out << std::scientific << std::setprecision(14);
+    
+    // eval_ana
+    out << "# eval_ana (N entries)\n";
+    for (int i = 0; i < N; ++i)
+        out << std::setw(22) << eval_ana(i) << "\n";
+    out << "\n";
 
-    std::cout << "\nMax |lambda_num - lambda_ana| = " << max_ev_diff << "\n";
-    std::cout << "Max |v_num - v_ana (sign-aligned)|_inf = " << max_vec_diff << "\n";
+    // eval_num
+    out << "# eval_num (N entries)\n";
+    for (int i = 0; i < N; ++i)
+        out << std::setw(22) << eval_num(i) << "\n";
+    out << "\n";
+
+    // evec_ana
+    out << "# evec_ana (N x N)\n";
+    for (int r = 0; r < N; ++r) {
+        for (int c = 0; c < N; ++c)
+            out << std::setw(22) << evec_ana(r, c);
+        out << "\n";
+    }
+    out << "\n";
+
+    // evec_num
+    out << "# evec_num (N x N)\n";
+    for (int r = 0; r < N; ++r) {
+        for (int c = 0; c < N; ++c)
+            out << std::setw(22) << evec_num(r, c);
+        out << "\n";
+    }
+    out << "\n";
+
+    out.close();
+    
     return 0;
 }
