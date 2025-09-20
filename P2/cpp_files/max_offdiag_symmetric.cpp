@@ -1,13 +1,13 @@
 #include <armadillo>
 #include <cmath>
+#include <cassert>
 
 // Function to find the largest off-diagonal element of a symmetric matrix
 double max_offdiag_symmetric(const arma::mat& A, int& k, int& l) {
-
-    // Possible consistency checks:
-    // Ensure the matrix is square and has size > 1
-    assert(A.is_square() && A.n_rows > 1);
     
+    assert(A.is_square() && "Matrix must be square.");
+    assert(A.n_rows > 1 && "Matrix must be larger than 1x1.");
+
     double max_val=0.0;
     int n=A.n_rows;
 

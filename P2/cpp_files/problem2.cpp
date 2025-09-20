@@ -37,7 +37,6 @@ int main() {
     }
 
     // Write the eigenvalues and eigenvectors
-
     std::ofstream out("../txt_files/eval_evec.txt");
     out << std::scientific << std::setprecision(14);
     
