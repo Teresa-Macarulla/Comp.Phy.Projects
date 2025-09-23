@@ -1,4 +1,4 @@
-This repository documents the workflow and codes for Project 1.
+This README documents the workflow and codes for Project 2.
 The files are described in order of use, following the progression of the project.
 .cpp, .exe and .hpp files are in "cpp_files" folder 
 
