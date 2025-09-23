@@ -12,17 +12,11 @@ Contains the eigenvalues and eigenvectors analytical values and Armadillo values
 * max_offdiag_symmetric.cpp:
 Function that can identify the largest off-diagonal element of a matrix for Problem 3.
 
-* max_offdiag_symetric.hpp:
-Contains the function declaration.
-
 * problem3.cpp:
 Short C++ program that test max_offdiag_symmetric.cpp function with a given matrix from Problem 3.
 
 * Jacobi_rotation.cpp:
 Function that applies the Jacobi rotation method. 
-
-* Jacobi_rotation.hpp:
-Contains the function declaration.
 
 * problem4.cpp:
 Applies the Jacobi rotation method to solve eigenvalues problem with the case N=6. 
@@ -39,3 +33,21 @@ Contains a short python code to plot the number of transformations required for 
 
 * transformations_vs_N.pdf:
 The plot of transformations vs N.
+
+* problem6.cpp
+Similar to problem5 but in this case it only works for a single value of N. The program calculates the eigenvalues and eigenvectors of A (using Jacobi algorithm) and storages the eigenvectors corresponding to tree minimum eigenvalues to evec_vd_xi.txt file. It also storages calculates the analytical solutions to the same eigenvectors.
+
+* three_min.cpp
+Function used in problem6.cpp to find the three lowest eigenvalues.
+
+* evec_xi_jac.txt
+Contains four colums. The first one are the discrete x values, the second the third and the fourth are the eigenvectors corresponding to the tree minimum eigenvalues calculated with Jacobi algorithm.  
+
+* evec_xi_ana.txt
+Contains four colums. The first one are the discrete x values, the second the third and the fourth are the eigenvectors corresponding to the tree minimum eigenvalues calculated analytically.  
+
+* eval_vs_x.py:
+Contains a short python code to plot the eigenvectors obtained from "evec_xi_jac.txt" and "evec_xi_ana.txt" vs the discretized x values.
+
+* .pdf:
+The plot of eigenvectors vs x.
