@@ -34,20 +34,23 @@ Contains a short python code to plot the number of transformations required for 
 * transformations_vs_N.pdf:
 The plot of transformations vs N.
 
-* problem6.cpp
+* problem6.cpp:
 Similar to problem5 but in this case it only works for a single value of N. The program calculates the eigenvalues and eigenvectors of A (using Jacobi algorithm) and storages the eigenvectors corresponding to tree minimum eigenvalues to evec_vd_xi.txt file. It also storages calculates the analytical solutions to the same eigenvectors.
 
-* three_min.cpp
+* three_min.cpp:
 Function used in problem6.cpp to find the three lowest eigenvalues.
 
-* evec_xi_jac.txt
+* evec_xi_jac.txt:
 Contains four colums. The first one are the discrete x values, the second the third and the fourth are the eigenvectors corresponding to the tree minimum eigenvalues calculated with Jacobi algorithm.  
 
-* evec_xi_ana.txt
+* evec_xi_ana.txt:
 Contains four colums. The first one are the discrete x values, the second the third and the fourth are the eigenvectors corresponding to the tree minimum eigenvalues calculated analytically.  
 
 * eval_vs_x.py:
 Contains a short python code to plot the eigenvectors obtained from "evec_xi_jac.txt" and "evec_xi_ana.txt" vs the discretized x values.
 
-* .pdf:
-The plot of eigenvectors vs x.
+* eval_vs_x10.pdf:
+The plot of eigenvectors vs x for n=10.
+
+* eval_vs_x100.pdf:
+The plot of eigenvectors vs x for n=100.
